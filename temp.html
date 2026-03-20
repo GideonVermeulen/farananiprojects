@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Faranani Projects | Engineering Excellence</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e2a3a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Color Scheme: White, Blue (#0b3b5f), Red (#c72a2f) */
+    :root {
+      --primary-blue: #0b3b5f;
+      --primary-red: #c72a2f;
+      --blue-light: #eef3fc;
+      --blue-dark: #07283f;
+      --gray-light: #f8fafc;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      padding: 0.8rem 2rem;
+      transition: all 0.3s ease;
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo-area {
+  position: relative;
+  height: 70px; /* navbar height */
+}
+
+.logo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-30%);
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.logo-wrapper.hide {
+  opacity: 0;
+  transform: translateY(-80%); /* slides it up and out */
+  pointer-events: none;
+}
+
+.logo-img {
+  height: 252px;
+  width: auto;
+  display: block;
+  transition: transform 0.35s ease;
+}
+    .logo-placeholder {
+      border: 2px dashed var(--primary-red);
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary-blue);
+      background: white;
+      transition: 0.2s;
+    }
+    .logo-placeholder i {
+      color: var(--primary-red);
+      margin-right: 6px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1f3a4b;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-red);
+    }
+    .mobile-menu-btn {
+      display: none;
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      color: var(--primary-blue);
+      cursor: pointer;
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+      color: var(--primary-blue);
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: var(--primary-red);
+      border-radius: 4px;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--blue-light) 0%, #ffffff 100%);
+      border-radius: 0 0 3rem 3rem;
+      padding: 4rem 2rem;
+      margin-top: 100px; /* to account for logo overlap */
+    }
+    .hero-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-text {
+      flex: 1;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(125deg, var(--primary-blue), var(--primary-red));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+    .tagline {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-red);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .btn-red {
+      display: inline-block;
+      background: var(--primary-red);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-red:hover {
+      background: #a81e22;
+      transform: translateY(-2px);
+    }
+    .hero-stock {
+      flex: 1;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .stock-img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 3px solid white;
+    }
+
+    /* Cards */
+    .grid-2, .services-grid, .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 2rem;
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+      border: 1px solid #eef2f6;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      border-color: var(--primary-red);
+    }
+    .card-icon {
+      font-size: 2.2rem;
+      color: var(--primary-red);
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary-blue);
+    }
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .badge {
+      background: var(--blue-light);
+      padding: 0.3rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-blue);
+    }
+
+    /* About extra */
+    .leader-card {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      background: var(--blue-light);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      margin-top: 2rem;
+    }
+    .leader-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-red);
+    }
+    /* Contact */
+    .contact-block {
+      background: var(--primary-blue);
+      border-radius: 2rem;
+      padding: 2rem;
+      color: white;
+    }
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .contact-line i {
+      width: 28px;
+      color: var(--primary-red);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--blue-dark);
+      color: #cddfe7;
+      font-size: 0.8rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .navbar {
+        padding: 0.8rem 1.2rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 3rem 1.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo-area">
+      <div class="logo-wrapper">
+  <img src="src/IMG-20260320-WA0041.jpg" alt="Company Logo" class="logo-img" />
+</div>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#products" class="nav-link">Products</a></li>
+      <li><a href="#contact" class="nav-link">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero Section (Home) -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="tagline">“PASSION THAT BUILDS EXCELLENCE”</div>
+      <h1>Faranani Projects & Construction</h1>
+      <p style="font-size: 1.1rem; margin: 1rem 0;">Leading BBBEE investment company in renewable energy, system integration & local manufacturing. We deliver turnkey engineering solutions across South Africa.</p>
+      <a href="#about" class="btn-red">Discover More <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <h2 class="section-title">About Faranani</h2>
+  <div class="grid-2">
+    <div class="card fade-up">
+      <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+      <h3>Business Concept</h3>
+      <p>Faranani Projects is a multidisciplinary Construction and engineering business, core capability in system integration and local manufacturing. We add value by supplying quality products, swift service, and competitive market prices partnering with global leaders for skill transfer and sustainable job creation.</p>
+    </div>
+    <div class="card fade-up">
+      <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+      <h3>Competitive Edge</h3>
+      <p>Cost savings without quality compromise · Strategic supplier partnerships · Active involvement in business growth · Monitoring, evaluation & reporting. We ensure long-term value through talent development and revenue protection management.</p>
+    </div>
+  </div>
+  <div class="card fade-up" style="margin-top: 1rem;">
+    <div class="card-icon"><i class="fas fa-hard-hat"></i></div>
+    <h3>Full Project Lifecycle</h3>
+    <p>From electricity masterplans, network simulations, detail designs, procurement, construction and maintenance to renewable energy & power systems studies. Since 2017, we've delivered turnkey solutions exceeding expectations with strong quality focus.</p>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services">
+  <h2 class="section-title">Our Services</h2>
+  <div class="services-grid">
+    <div class="card fade-up">
+      <i class="fas fa-charging-station card-icon"></i>
+      <h3>Electrification & Maintenance</h3>
+      <p>Turnkey electrical infrastructure, aerial bundle conductors (ABC), network upgrades, and full maintenance for municipalities & utilities.</p>
+    </div>
+    <div class="card fade-up">
+      <i class="fas fa-chart-line card-icon"></i>
+      <h3>Revenue Protection (AMR/AMI)</h3>
+      <p>Automated Meter Reading solutions, non-technical losses detection, accurate billing, and energy efficiency KPI reporting.</p>
+    </div>
+    <div class="card fade-up">
+      <i class="fas fa-tachometer-alt card-icon"></i>
+      <h3>Network Operations</h3>
+      <p>Real-time monitoring, substation automation, fault diagnosis, and preventive care for ageing infrastructure.</p>
+    </div>
+    <div class="card fade-up">
+      <i class="fas fa-industry card-icon"></i>
+      <h3>Substation Solutions</h3>
+      <p>Integrated secondary plant, automated switching, continuity of power, and safety for utility personnel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="products">
+  <h2 class="section-title">Our Products</h2>
+  <div class="products-grid">
+    <div class="card fade-up">
+      <i class="fas fa-sun card-icon"></i>
+      <h3>Solar Energy Systems</h3>
+      <p>Offgrid, hybrid & grid-tied solar PV systems. Complete solar geyser systems, Li-Ion batteries, and home solar kits.</p>
+    </div>
+    <div class="card fade-up">
+      <i class="fas fa-car-battery card-icon"></i>
+      <h3>Li-Ion Batteries</h3>
+      <p>High-capacity lithium-ion storage for residential, commercial and industrial applications.</p>
+    </div>
+    <div class="card fade-up">
+      <i class="fas fa-network-wired card-icon"></i>
+      <h3>Aerial Bundle Conductor</h3>
+      <p>Distribution network upgrades: reduction in cable theft, safer fault conditions, higher capacity & corrosion resistance.</p>
+    </div>
+    <div class="card fade-up">
+      <i class="fas fa-bolt card-icon"></i>
+      <h3>Distribution Transformers</h3>
+      <p>Pole mounted (16-100kVA) & ground mounted up to 3150kVA, primary voltage up to 36kV.</p>
+    </div>
+  </div>
+  <div class="card fade-up" style="margin-top: 1rem;">
+    <i class="fas fa-plug card-icon"></i>
+    <h3>Complete Electrical Components</h3>
+    <p>Supply of electrical materials, project management, street surveys, BoQ designs, training of independent contractors, and turnkey delivery.</p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2 class="section-title">Contact Us</h2>
+  <div class="contact-block fade-up">
+    <div class="contact-line"><i class="fas fa-map-marker-alt"></i> <span>Gauteng Office: No 66 16th Avenue, Edenvale, 1609</span></div>
+    <div class="contact-line"><i class="fas fa-phone-alt"></i> <span>065 955 2388 &nbsp;|&nbsp; 079 617 9380</span></div>
+    <div class="contact-line"><i class="fas fa-envelope"></i> <span>info@farananiprojects.co.za</span></div>
+    <div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.9;">BBBEE compliant | Sustainable job creation | Renewable energy specialists</div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Faranani Projects and Construction (Pty) Ltd — Passion that builds excellence
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+    });
+  });
+
+  // Active link highlight on scroll + smooth scroll
+  const sections = document.querySelectorAll('section');
+  const navItems = document.querySelectorAll('.nav-link');
+
+  function updateActiveNav() {
+    let current = '';
+    const scrollPos = window.scrollY + 150;
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('href') === `#${current}`) {
+        item.classList.add('active');
+      }
+    });
+    // handle home special
+    if (window.scrollY < 100) {
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#home') item.classList.add('active');
+      });
+    }
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  window.addEventListener('load', updateActiveNav);
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav-link').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Fade-up animation on scroll
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+  fadeElements.forEach(el => observer.observe(el));
+
+  // also ensure any dynamic cards get observed
+  // add little style for navbar background on scroll
+  const navbar = document.getElementById('navbar');
+const logoWrapper = document.querySelector('.logo-wrapper');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+    logoWrapper.classList.add('hide');
+  } else {
+    navbar.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+    logoWrapper.classList.remove('hide');
+  }
+});
+  
+</script>
+</body>
+</html>
