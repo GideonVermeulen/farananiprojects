@@ -293,7 +293,59 @@
       font-size: 0.8rem;
     }
 
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(11, 59, 95, 0.9));
+      padding: 1.5rem;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    .gallery-overlay h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    .gallery-overlay p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
     /* Mobile */
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -320,6 +372,9 @@
       .section-title {
         font-size: 1.8rem;
       }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .fade-up {
@@ -339,7 +394,7 @@
   <div class="nav-container">
     <div class="logo-area">
       <div class="logo-wrapper">
-  <img src="src/IMG-20260320-WA0041.jpg" alt="Company Logo" class="logo-img" />
+  <img src="src/logoResize.webp" alt="Company Logo" class="logo-img" />
 </div>
     </div>
     <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
@@ -348,6 +403,7 @@
       <li><a href="#about" class="nav-link">About</a></li>
       <li><a href="#services" class="nav-link">Services</a></li>
       <li><a href="#products" class="nav-link">Products</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
       <li><a href="#contact" class="nav-link">Contact Us</a></li>
     </ul>
   </div>
@@ -407,7 +463,7 @@
       <p>Real-time monitoring, substation automation, fault diagnosis, and preventive care for ageing infrastructure.</p>
     </div>
     <div class="card fade-up">
-      <i class="fas fa-industry card-icon"></i>
+      <i class="fas fa-tower-broadcast card-icon"></i>
       <h3>Substation Solutions</h3>
       <p>Integrated secondary plant, automated switching, continuity of power, and safety for utility personnel.</p>
     </div>
@@ -419,30 +475,79 @@
   <h2 class="section-title">Our Products</h2>
   <div class="products-grid">
     <div class="card fade-up">
-      <i class="fas fa-sun card-icon"></i>
+      <i class="fas fa-solar-panel card-icon"></i>
       <h3>Solar Energy Systems</h3>
       <p>Offgrid, hybrid & grid-tied solar PV systems. Complete solar geyser systems, Li-Ion batteries, and home solar kits.</p>
     </div>
     <div class="card fade-up">
-      <i class="fas fa-car-battery card-icon"></i>
+      <i class="fas fa-battery-full card-icon"></i>
       <h3>Li-Ion Batteries</h3>
       <p>High-capacity lithium-ion storage for residential, commercial and industrial applications.</p>
     </div>
     <div class="card fade-up">
-      <i class="fas fa-network-wired card-icon"></i>
+      <i class="fas fa-bolt card-icon"></i>
       <h3>Aerial Bundle Conductor</h3>
       <p>Distribution network upgrades: reduction in cable theft, safer fault conditions, higher capacity & corrosion resistance.</p>
     </div>
     <div class="card fade-up">
-      <i class="fas fa-bolt card-icon"></i>
+      <i class="fas fa-industry card-icon"></i>
       <h3>Distribution Transformers</h3>
       <p>Pole mounted (16-100kVA) & ground mounted up to 3150kVA, primary voltage up to 36kV.</p>
     </div>
   </div>
   <div class="card fade-up" style="margin-top: 1rem;">
-    <i class="fas fa-plug card-icon"></i>
+    <i class="fas fa-screwdriver-wrench card-icon"></i>
     <h3>Complete Electrical Components</h3>
     <p>Supply of electrical materials, project management, street surveys, BoQ designs, training of independent contractors, and turnkey delivery.</p>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+  <h2 class="section-title">Project Showcase</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item fade-up">
+      <img src="src/fotos/IMG-20260320-WA0054.jpg" alt="Renewable Energy Solutions">
+      <div class="gallery-overlay">
+        <h4>Renewable Solutions</h4>
+        <p>Sustainable energy integration for long-term power security.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-up">
+      <img src="src/fotos/IMG-20260320-WA0096.jpg" alt="Power Systems & UPS">
+      <div class="gallery-overlay">
+        <h4>Power Systems</h4>
+        <p>Advanced energy storage and UPS system installation.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-up">
+      <img src="src/fotos/IMG-20260320-WA0042.jpg" alt="Construction Management">
+      <div class="gallery-overlay">
+        <h4>Construction</h4>
+        <p>On-site management and engineering excellence.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-up">
+      <img src="src/fotos/IMG-20260320-WA0106.jpg" alt="Specialized Engineering">
+      <div class="gallery-overlay">
+        <h4>Technical Services</h4>
+        <p>Specialized installation of electrical components.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-up">
+      <img src="src/fotos/IMG-20260320-WA0025.jpg" alt="Site Survey & Planning">
+      <div class="gallery-overlay">
+        <h4>Site Planning</h4>
+        <p>Masterplan development and comprehensive surveys.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-up">
+      <img src="src/fotos/IMG-20260320-WA0045.jpg" alt="Electrical Infrastructure">
+      <div class="gallery-overlay">
+        <h4>Network Upgrades</h4>
+        <p>Distribution network upgrades and ABC cabling solutions.</p>
+      </div>
+    </div>
   </div>
 </section>
 
