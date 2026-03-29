@@ -58,21 +58,21 @@
 
 .logo-wrapper {
   position: absolute;
-  top: 0;
+  top: 5px; /* shift down slightly */
   left: 0;
-  transform: translateY(-30%);
+  transform: translateY(0); /* remove negative translate to stop top clipping */
   z-index: 10;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .logo-wrapper.hide {
   opacity: 0;
-  transform: translateY(-80%); /* slides it up and out */
+  transform: translateY(-100%); /* push out of view when scrolling */
   pointer-events: none;
 }
 
 .logo-img {
-  height: 252px;
+  height: 160px; /* reduced height to fit better */
   width: auto;
   display: block;
   transition: transform 0.35s ease;
@@ -120,6 +120,10 @@
       padding: 5rem 2rem;
       max-width: 1280px;
       margin: 0 auto;
+      scroll-margin-top: 100px; /* Fixes titles being cut off by sticky navbar */
+    }
+    #contact {
+      scroll-margin-top: 0; /* Exclude contact as requested */
     }
     .section-title {
       font-size: 2.2rem;
