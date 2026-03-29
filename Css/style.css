@@ -274,10 +274,15 @@ section {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  
 }
 .contact-line i {
   width: 28px;
   color: var(--primary-red);
+}
+.contact-line a[href^="tel"] {
+    color: inherit;
+    text-decoration: none;
 }
 footer {
   text-align: center;
